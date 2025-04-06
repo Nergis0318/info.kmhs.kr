@@ -90,7 +90,7 @@ export const prerender = true;
 
       async function fetchMealImage() {
         try {
-          const response = await fetch("https://school-api.nergis.xyz/mealimg");
+          const response = await fetch("https://api.kmhs.info/mealimg");
           if (response.status === 404) {
             return null;
           }
