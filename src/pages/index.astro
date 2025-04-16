@@ -1,110 +1,62 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Card from "@components/IndexCard.astro";
+import "@styles/pages/index.css";
 ---
 
 <Layout title="KMHS.INFO" description="근명고등학교 정보를 제공합니다.">
-  <div class="container">
-    <header>
-      <h1>KMHS.INFO</h1>
-      <p>근명고등학교 학생들을 위한 정보 서비스</p>
+  <main class="jetbrains-theme">
+    <header class="header-container">
+      <h1>
+        Welcome to <span class="gradient-text">KMHS.INFO</span>
+      </h1>
+      <p class="sub-heading">근명고등학교 학생들을 위한 정보 서비스</p>
     </header>
-
-    <main>
-      <section class="card-grid">
-        <Card href="/academic_calendar" title="🎓 학사일정" body="학사일정을 빠르게 확인하세요." />
-        <Card href="/meal" title="🍱 급식" body="오늘과 내일의 급식 정보를 확인하세요." />
-        <Card href="/timetable" title="🕒 시간표" body="학교 시간표를 손쉽게 확인하세요." />
-        <Card href="/install" title="⬇️ 설치" body="이 사이트를 앱으로 설치해보세요." />
-        <Card href="/tool/snowflake" title="❄️ Snowflake" body="전 세계 검열 우회 시스템을 확인하세요." />
-        <Card href="/about" title="ℹ️ About" body="해당 사이트에 대해 알아보세요." />
-      </section>
-    </main>
-
+    <section class="feature-grid">
+      <Card
+        class="card"
+        href="/academic_calendar"
+        title="🎓 학사일정"
+        body="학사일정을 빠르게 확인하세요."
+      />
+      <Card
+        class="card"
+        href="/meal"
+        title="🍱 급식"
+        body="오늘과 내일의 급식 정보를 확인하세요."
+      />
+      <Card
+        class="card"
+        href="/timetable"
+        title="🕒 시간표"
+        body="학교 시간표를 손쉽게 확인하세요."
+      />
+      <Card
+        class="card"
+        href="/install"
+        title="⬇️ 설치"
+        body="이 사이트를 앱으로 설치해보세요."
+      />
+      <Card
+        class="card"
+        href="/tool/snowflake"
+        title="❄️ Snowflake"
+        body="전 세계 검열 우회 시스템을 확인하세요."
+      />
+      <Card
+        class="card"
+        href="/about"
+        title="ℹ️ About"
+        body="해당 사이트에 대해 알아보세요."
+      />
+    </section>
     <footer>
-      <p>
-        <strong>KMHS.INFO</strong>는 항상 여러분과 함께합니다. 도움이 필요하면 이메일로 문의하세요:
-        <a href="mailto:me@nergis.dev">me@nergis.dev</a>
+      <p class="footer-text">
+        <strong>KMHS.INFO</strong>는 항상 여러분과 함께합니다. 도움이 필요하면
+        이메일로 문의하세요: <a href="mailto:me@nergis.dev" class="email-link"
+          >me@nergis.dev</a
+        >
       </p>
     </footer>
-  </div>
+  </main>
 </Layout>
-
-<style>
-  @font-face {
-    font-family: "Pretendard";
-    src: url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css") format("css");
-    font-weight: 100 900;
-    font-style: normal;
-  }
-
-  html {
-    font-family: "Pretendard", sans-serif;
-    background-color: #f9f9f9; /* Light gray background */
-  }
-
-  .container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-  }
-
-  header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  h1 {
-    font-size: 3rem;
-    font-weight: 700;
-    background: linear-gradient(to right, #883aea, #afa);  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
-    transition: transform 0.2s ease-in-out;
-  }
-
-  h1:hover {
-    transform: scale(1.05);
-  }
-
-  p {
-    font-size: 1.2rem;
-    color: #555;
-  }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  main {
-    margin-bottom: 4rem;
-  }
-
-  footer {
-    text-align: center;
-    padding: 2rem;
-    border-top: 1px solid #eee;
-  }
-
-  footer p {
-    font-size: 0.9rem;
-    color: #777;
-  }
-
-  footer a {
-    color: #883aea;
-    text-decoration: none;
-  }
-
-  footer a:hover {
-    text-decoration: underline;
-  }
-
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    h1 {
-      font-size: 2.5rem;
-    }
-  }
-</style>
