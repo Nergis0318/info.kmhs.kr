@@ -1,4 +1,4 @@
-const CACHE_NAME = "kmhs-info-cache-v2";
+const CACHE_NAME = "kmhs.info-cache";
 const urlsToCache = [
   "/",
   "/manifest.json",
