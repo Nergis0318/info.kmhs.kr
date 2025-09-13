@@ -90,7 +90,7 @@ export const prerender = true;
 
       async function fetchMealImage() {
         try {
-          const response = await fetch("https://kmhs-info-backend.up.railway.app/mealimg");
+          const response = await fetch("https://api.kmhs.info/mealimg");
           if (response.status === 404) {
             return null;
           }
