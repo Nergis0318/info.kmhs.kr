@@ -43,7 +43,7 @@ export default defineConfig({
     },
   })],
 
-  site: "https://kmhs.info",
+  site: "https://info.kmhs.kr",
 
   vite: {
     plugins: [tailwindcss()],

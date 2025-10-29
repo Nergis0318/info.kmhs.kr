@@ -25,3 +25,4 @@ pnpm-debug.log*
 
 .dev.vars
 .wrangler
+package-lock.json

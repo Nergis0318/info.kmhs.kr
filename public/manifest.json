@@ -1,11 +1,11 @@
 {
-  "name": "KMHS.INFO",
-  "short_name": "KMHS.INFO",
+  "name": "INFO.KMHS.KR",
+  "short_name": "INFO.KMHS.KR",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#333333",
-  "description": "KMHS.INFO provides information for students of Keunmyung High School.",
+  "description": "INFO.KMHS.KR provides information for students of Keunmyung High School.",
   "icons": [
     {
       "src": "/pwa.png",
@@ -25,7 +25,7 @@
   ],
   "id": "kmhs-info",
   "dir": "auto",
-  "scope": "https://kmhs.info",
+  "scope": "https://INFO.KMHS.KR",
   "lang": "ko",
   "display_override": [
     "window-controls-overlay",

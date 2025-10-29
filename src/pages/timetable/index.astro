@@ -123,7 +123,7 @@ import Layout from "@layouts/Layout.astro";
             loadingIconElement.classList.remove("hidden");
           }
           const response = await fetch(
-            `https://api.kmhs.info/timetable?grade=${grade}&classnum=${classNum}`,
+            `https://api.INFO.KMHS.KR/timetable?grade=${grade}&classnum=${classNum}`,
           );
           if (!response.ok) {
             //@ts-ignore
