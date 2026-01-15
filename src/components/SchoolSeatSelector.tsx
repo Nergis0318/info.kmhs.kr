@@ -111,7 +111,7 @@ const SchoolSeatSelector: React.FC = () => {
 
   return (
     <div>
-      <h1 className="text-xl font-bold mb-4">학교 자리 배치</h1>
+      <h1 className="mb-4 text-xl font-bold">학교 자리 배치</h1>
 
       {/* 자리 입력 필드 */}
       <div className="mb-6 flex gap-4">
@@ -122,7 +122,7 @@ const SchoolSeatSelector: React.FC = () => {
             value={columns || ""}
             min={1}
             onChange={(e) => setColumns(Number(e.target.value))}
-            className="border p-2 rounded w-20"
+            className="w-20 rounded border p-2"
           />
         </div>
         <div>
@@ -132,12 +132,12 @@ const SchoolSeatSelector: React.FC = () => {
             value={rows || ""}
             min={1}
             onChange={(e) => setRows(Number(e.target.value))}
-            className="border p-2 rounded w-20"
+            className="w-20 rounded border p-2"
           />
         </div>
         <button
           onClick={createDesks} // 자리 배치 생성 버튼
-          className="bg-blue-500 text-white px-4 py-2 rounded"
+          className="rounded bg-blue-500 px-4 py-2 text-white"
         >
           자리 배치 생성
         </button>
@@ -152,12 +152,12 @@ const SchoolSeatSelector: React.FC = () => {
             value={peopleCount || ""}
             min={1}
             onChange={(e) => setPeopleCount(Number(e.target.value))}
-            className="border p-2 rounded w-20"
+            className="w-20 rounded border p-2"
           />
         </div>
         <button
           onClick={assignRandomSeats} // 랜덤 자리 배치 버튼
-          className="bg-green-500 text-white px-4 py-2 rounded"
+          className="rounded bg-green-500 px-4 py-2 text-white"
         >
           랜덤 자리 배치
         </button>
@@ -165,7 +165,7 @@ const SchoolSeatSelector: React.FC = () => {
 
       {/* 자리 배치 캔버스 */}
       <div
-        className="grid gap-2 outline outline-black p-3 rounded-lg"
+        className="grid gap-2 rounded-lg p-3 outline outline-black"
         style={{
           gridTemplateColumns: `repeat(${columns}, 100px)`,
           gridAutoRows: "100px",
@@ -176,7 +176,7 @@ const SchoolSeatSelector: React.FC = () => {
             <div
               key={desk.id}
               onClick={() => toggleDeskState(rowIndex, colIndex)}
-              className={`flex items-center justify-center border rounded ${
+              className={`flex items-center justify-center rounded border ${
                 desk.isActive ? "bg-green-300" : "bg-gray-400"
               }`}
               style={{ cursor: "pointer" }}
@@ -188,9 +188,9 @@ const SchoolSeatSelector: React.FC = () => {
       </div>
 
       {/* 자리 배치 텍스트 */}
-      <div className="bg-gray-100 p-4 rounded mt-6">
-        <h2 className="text-lg font-bold mb-2">배치 텍스트 보기:</h2>
-        <pre className="whitespace-pre bg-white border rounded p-4 overflow-x-auto">
+      <div className="mt-6 rounded bg-gray-100 p-4">
+        <h2 className="mb-2 text-lg font-bold">배치 텍스트 보기:</h2>
+        <pre className="overflow-x-auto rounded border bg-white p-4 whitespace-pre">
           {renderSeatLayout()}
         </pre>
       </div>

@@ -1,28 +1,32 @@
 ---
-import Layout from "@layouts/Layout.astro";
+import Layout from "../../layouts/Layout.astro";
 // noinspection JSUnusedGlobalSymbols
 export const prerender = true;
 ---
 
 <Layout title="About INFO.KMHS.KR" description="정보">
-  <main class="mx-auto p-6 w-full max-w-4xl text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
-    <h1 class="text-5xl font-extrabold text-center mb-6 text-purple-600">
+  <main
+    class="mx-auto w-full max-w-4xl p-6 text-lg leading-relaxed text-gray-800 dark:text-gray-200"
+  >
+    <h1 class="mb-6 text-center text-5xl font-extrabold text-purple-600">
       About INFO.KMHS.KR
     </h1>
     <!-- 대표 보라색 적용 -->
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
+    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
       <p class="mb-4">
-        <strong>INFO.KMHS.KR</strong>는 근명고등학교 학생들을 위한 정보형 사이트입니다. 이 사이트는 학사일정, 급식 정보, 그리고 기타 학교 관련 정보를 제공합니다.
+        <strong>INFO.KMHS.KR</strong>는 근명고등학교 학생들을 위한 정보형
+        사이트입니다. 이 사이트는 학사일정, 급식 정보, 그리고 기타 학교 관련
+        정보를 제공합니다.
       </p>
     </div>
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-      <h2 class="text-3xl font-semibold mb-4 text-purple-600">개발자</h2>
+    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
+      <h2 class="mb-4 text-3xl font-semibold text-purple-600">개발자</h2>
       <!-- 제목 색상 -->
       <p class="mb-4">&bull; Nergis</p>
     </div>
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-      <h2 class="text-3xl font-semibold mb-4 text-purple-600">사용 기술</h2>
-      <ul class="list-disc pl-5 mb-4">
+    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
+      <h2 class="mb-4 text-3xl font-semibold text-purple-600">사용 기술</h2>
+      <ul class="mb-4 list-disc pl-5">
         <li>Astro</li>
         <li>Tailwind CSS</li>
         <li>CSS</li>
@@ -31,15 +35,21 @@ export const prerender = true;
         <li>JavaScript</li>
       </ul>
     </div>
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-      <h2 class="text-3xl font-semibold mb-4 text-purple-600">배포 기술</h2>
+    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
+      <h2 class="mb-4 text-3xl font-semibold text-purple-600">배포 기술</h2>
       <p class="mb-4">&bull; Cloudflare Pages</p>
     </div>
-    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg mb-6">
-      <h2 class="text-3xl font-semibold mb-4 text-purple-600">문의, 연락</h2>
+    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
+      <h2 class="mb-4 text-3xl font-semibold text-purple-600">문의, 연락</h2>
       <p class="mb-4">
-        &bull; <strong>Email</strong>: <code class="bg-green-200 p-1 rounded text-black"><a href="mailto:me@nergis.dev">me@nergis.dev</a></code><br />
-        &bull; <strong>Telegram</strong>: <code class="bg-green-200 p-1 rounded text-black"><a href="https://t.me/Dev_Nergis">@Dev_Nergis</a></code>
+        &bull; <strong>Email</strong>: <code
+          class="rounded bg-green-200 p-1 text-black"
+          ><a href="mailto:me@nergis.dev">me@nergis.dev</a></code
+        ><br />
+        &bull; <strong>Telegram</strong>: <code
+          class="rounded bg-green-200 p-1 text-black"
+          ><a href="https://t.me/Dev_Nergis">@Dev_Nergis</a></code
+        >
       </p>
     </div>
   </main>
