@@ -3,6 +3,6 @@
   "installCommand": "bun install",
   "buildCommand": "bun run build",
   "assets": {
-    "directory": "./dist"
-  }
+    "directory": "./dist",
+  },
 }
