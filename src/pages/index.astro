@@ -1,16 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/IndexCard.astro";
-import "../styles/pages/index.css";
+import Beams from "../components/Beams.tsx";
 ---
 
 <Layout title="INFO.KMHS.KR" description="근명고등학교 정보를 제공합니다.">
   <main class="jetbrains-theme">
     <header class="header-container">
-      <h1>
-        Welcome to <span class="gradient-text">INFO.KMHS.KR</span>
-      </h1>
-      <p class="sub-heading">근명고등학교 학생들을 위한 정보 서비스</p>
+      <div class="beams-background">
+        <Beams
+          client:load
+          beamWidth={3}
+          beamHeight={30}
+          beamNumber={20}
+          lightColor="#b281ef"
+          speed={2}
+          noiseIntensity={1.75}
+          scale={0.2}
+          rotation={30}
+        />
+      </div>
+      <div class="header-content">
+        <h1>
+          Welcome to <span class="gradient-text">INFO.KMHS.KR</span>
+        </h1>
+        <p class="sub-heading">근명고등학교 학생들을 위한 정보 서비스</p>
+      </div>
     </header>
     <section class="feature-grid">
       <Card
@@ -61,3 +76,178 @@ import "../styles/pages/index.css";
     </footer>
   </main>
 </Layout>
+
+<style>
+  :root {
+    --jetbrains-primary: #883aea; /* Point Color */
+    --jetbrains-accent: #b388ff;
+    --text-color: #fff;
+    --background-color: #0f0f13; /* Dark background */
+  }
+
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    font-family: "JetBrains Mono", sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    overflow-x: hidden;
+  }
+
+  /* Background Blobs for Glassmorphism Context */
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.4;
+    animation: blob-bounce 20s infinite ease-in-out alternate;
+  }
+
+  body::before {
+    background: var(--jetbrains-primary);
+    top: -100px;
+    left: -200px;
+  }
+
+  body::after {
+    background: #5b21b6; /* Deep purple/violet */
+    bottom: -200px;
+    right: -200px;
+    animation-delay: -10s;
+  }
+
+  @keyframes blob-bounce {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(50px, 50px) scale(1.1);
+    }
+    100% {
+      transform: translate(-50px, 20px) scale(0.9);
+    }
+  }
+
+  .jetbrains-theme {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-container {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 5rem 1rem 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .beams-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 600px;
+    z-index: 0;
+    pointer-events: none;
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent
+    );
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-container h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.03em;
+    text-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #fff 0%, var(--jetbrains-primary) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .sub-heading {
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    padding: 4rem 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  footer {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, 0.4);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: auto;
+    font-size: 0.9rem;
+  }
+
+  footer strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  footer .email-link {
+    color: var(--jetbrains-primary);
+    text-decoration: none;
+    font-weight: bold;
+    transition:
+      color 0.3s,
+      text-shadow 0.3s;
+    position: relative;
+    margin-left: 0.5rem;
+  }
+
+  footer .email-link:hover {
+    color: #fff;
+    text-shadow: 0 0 15px var(--jetbrains-primary);
+  }
+</style>

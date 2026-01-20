@@ -5,52 +5,284 @@ export const prerender = true;
 ---
 
 <Layout title="About INFO.KMHS.KR" description="정보">
-  <main
-    class="mx-auto w-full max-w-4xl p-6 text-lg leading-relaxed text-gray-800 dark:text-gray-200"
-  >
-    <h1 class="mb-6 text-center text-5xl font-extrabold text-purple-600">
-      About INFO.KMHS.KR
-    </h1>
-    <!-- 대표 보라색 적용 -->
-    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-      <p class="mb-4">
-        <strong>INFO.KMHS.KR</strong>는 근명고등학교 학생들을 위한 정보형
-        사이트입니다. 이 사이트는 학사일정, 급식 정보, 그리고 기타 학교 관련
-        정보를 제공합니다.
-      </p>
-    </div>
-    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-      <h2 class="mb-4 text-3xl font-semibold text-purple-600">개발자</h2>
-      <!-- 제목 색상 -->
-      <p class="mb-4">&bull; Nergis</p>
-    </div>
-    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-      <h2 class="mb-4 text-3xl font-semibold text-purple-600">사용 기술</h2>
-      <ul class="mb-4 list-disc pl-5">
-        <li>Astro</li>
-        <li>Tailwind CSS</li>
-        <li>CSS</li>
-        <li>TypeScript</li>
-        <li>HTML</li>
-        <li>JavaScript</li>
-      </ul>
-    </div>
-    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-      <h2 class="mb-4 text-3xl font-semibold text-purple-600">배포 기술</h2>
-      <p class="mb-4">&bull; Cloudflare Pages</p>
-    </div>
-    <div class="mb-6 rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-      <h2 class="mb-4 text-3xl font-semibold text-purple-600">문의, 연락</h2>
-      <p class="mb-4">
-        &bull; <strong>Email</strong>: <code
-          class="rounded bg-green-200 p-1 text-black"
-          ><a href="mailto:me@nergis.dev">me@nergis.dev</a></code
-        ><br />
-        &bull; <strong>Telegram</strong>: <code
-          class="rounded bg-green-200 p-1 text-black"
-          ><a href="https://t.me/Dev_Nergis">@Dev_Nergis</a></code
+  <main class="jetbrains-theme">
+    <header class="header-container">
+      <div class="header-content">
+        <h1>
+          About <span class="gradient-text">INFO.KMHS.KR</span>
+        </h1>
+      </div>
+    </header>
+    <section class="content-section">
+      <div class="info-card">
+        <p>
+          <strong>INFO.KMHS.KR</strong>는 근명고등학교 학생들을 위한 정보형
+          사이트입니다. 이 사이트는 학사일정, 급식 정보, 그리고 기타 학교 관련
+          정보를 제공합니다.
+        </p>
+      </div>
+      <div class="info-card">
+        <h2>개발자</h2>
+        <p>&bull; Nergis</p>
+      </div>
+      <div class="info-card">
+        <h2>사용 기술</h2>
+        <ul>
+          <li>&bull; Astro</li>
+          <li>&bull; React</li>
+          <li>&bull; Three.js</li>
+          <li>&bull; React Three Fiber</li>
+          <li>&bull; Tailwind CSS</li>
+          <li>&bull; TypeScript</li>
+          <li>&bull; Astro Icon</li>
+          <li>&bull; Pretendard</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <h2>배포 기술</h2>
+        <p>&bull; Cloudflare Pages</p>
+      </div>
+      <div class="info-card">
+        <h2>문의, 연락</h2>
+        <p>
+          &bull; <strong>Email</strong>: <a
+            href="mailto:me@nergis.dev"
+            class="contact-link">me@nergis.dev</a
+          ><br />
+          &bull; <strong>Telegram</strong>: <a
+            href="https://t.me/Dev_Nergis"
+            class="contact-link">@Dev_Nergis</a
+          >
+        </p>
+      </div>
+    </section>
+    <footer>
+      <p class="footer-text">
+        <strong>INFO.KMHS.KR</strong>는 항상 여러분과 함께합니다. 도움이
+        필요하면 이메일로 문의하세요: <a
+          href="mailto:me@nergis.dev"
+          class="email-link">me@nergis.dev</a
         >
       </p>
-    </div>
+    </footer>
   </main>
 </Layout>
+
+<style>
+  :root {
+    --jetbrains-primary: #883aea;
+    --jetbrains-accent: #b388ff;
+    --text-color: #fff;
+    --background-color: #0f0f13;
+  }
+
+  body,
+  html {
+    margin: 0;
+    padding: 0;
+    font-family: "JetBrains Mono", sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    overflow-x: hidden;
+  }
+
+  body::before,
+  body::after {
+    content: "";
+    position: fixed;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    z-index: -1;
+    opacity: 0.4;
+    animation: blob-bounce 20s infinite ease-in-out alternate;
+  }
+
+  body::before {
+    background: var(--jetbrains-primary);
+    top: -100px;
+    left: -200px;
+  }
+
+  body::after {
+    background: #5b21b6;
+    bottom: -200px;
+    right: -200px;
+    animation-delay: -10s;
+  }
+
+  @keyframes blob-bounce {
+    0% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      transform: translate(50px, 50px) scale(1.1);
+    }
+    100% {
+      transform: translate(-50px, 20px) scale(0.9);
+    }
+  }
+
+  .jetbrains-theme {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-container {
+    background: rgba(255, 255, 255, 0.02);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: center;
+    padding: 5rem 1rem 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-container h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.03em;
+    text-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #fff 0%, var(--jetbrains-primary) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .content-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .info-card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+  }
+
+  .info-card:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(136, 58, 234, 0.3);
+    box-shadow: 0 8px 32px rgba(136, 58, 234, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .info-card h2 {
+    color: var(--jetbrains-primary);
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0 0 1rem 0;
+    letter-spacing: -0.02em;
+  }
+
+  .info-card p {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+  }
+
+  .info-card ul {
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.8;
+    margin: 0;
+    padding-left: 1.5rem;
+    font-size: 1.1rem;
+  }
+
+  .info-card li {
+    margin: 0.5rem 0;
+  }
+
+  .info-card strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .contact-link {
+    color: var(--jetbrains-primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .contact-link:hover {
+    color: #fff;
+    text-shadow: 0 0 15px var(--jetbrains-primary);
+  }
+
+  footer {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, 0.4);
+    padding: 3rem 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    margin-top: auto;
+    font-size: 0.9rem;
+  }
+
+  footer strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  footer .email-link {
+    color: var(--jetbrains-primary);
+    text-decoration: none;
+    font-weight: bold;
+    transition:
+      color 0.3s,
+      text-shadow 0.3s;
+    position: relative;
+    margin-left: 0.5rem;
+  }
+
+  footer .email-link:hover {
+    color: #fff;
+    text-shadow: 0 0 15px var(--jetbrains-primary);
+  }
+
+  @media (max-width: 768px) {
+    .header-container h1 {
+      font-size: 2.5rem;
+    }
+
+    .info-card h2 {
+      font-size: 1.5rem;
+    }
+
+    .info-card p,
+    .info-card ul {
+      font-size: 1rem;
+    }
+
+    .content-section {
+      padding: 2rem 1rem;
+    }
+  }
+</style>
