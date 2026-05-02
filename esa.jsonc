@@ -1,8 +1,0 @@
-{
-  "name": "info-kmhs-kr",
-  "installCommand": "bun install",
-  "buildCommand": "bun run build",
-  "assets": {
-    "directory": "./dist",
-  },
-}
