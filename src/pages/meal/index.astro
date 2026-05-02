@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 export const prerender = true;
 ---
 
-<Layout title="Meal Service" description="급식표">
+<Layout title="급식 조회" description="급식표">
   <body class="bg-white text-gray-900">
     <h1 class="my-8 text-center text-3xl font-bold text-black dark:text-white">
       급식 정보
@@ -161,7 +161,7 @@ export const prerender = true;
         meal: any,
         title: string,
         bgColor: string,
-        imageUrl: string | null,
+        imageUrl: string | null | "loading",
       ) {
         const container = document.getElementById(containerId) as HTMLElement;
         if (meal) {
@@ -172,7 +172,7 @@ export const prerender = true;
                         <p class="cal-info text-gray-700 dark:text-gray-300">&bull; 칼로리: ${meal.CAL_INFO}</p>
                         <hr class="my-2 border-gray-300 dark:border-white">
                         <p class="menu-info text-gray-700 dark:text-gray-300">${meal.DDISH_NM.replace(/<br\/>/g, "<br />").replace(/\(근명\)/g, "")}</p>
-                        ${imageUrl === "None" ? `` : imageUrl ? `<Image src="${imageUrl}" alt="Meal Image" class="w-full h-auto mt-4 rounded-lg shadow-md" />` : `<p class="text-center text-gray-700 dark:text-gray-300 mt-4">급식 사진이 아직 업로드되지 않았습니다.</p>`}
+                        <div id="${containerId}-image-slot">${renderMealImage(imageUrl)}</div>
                         <button class="copy-menu-button text-blue-500 border border-gray-300 dark:border-gray-600 rounded px-4 py-2 mt-2">메뉴 복사</button>
                     </div>
                 `;
@@ -194,7 +194,30 @@ export const prerender = true;
                         <h2 class="text-2xl font-bold text-center mb-2">${title} 정보가 없습니다</h2>
                         <p class="text-center text-gray-700 dark:text-gray-300">${title} 정보가 제공되지 않았습니다. 다른 날짜를 확인해 주세요.</p>
                     </div>
-                `;
+          `;
+        }
+      }
+
+      function renderMealImage(imageUrl: string | null | "loading") {
+        if (imageUrl === "None") {
+          return "";
+        }
+
+        if (imageUrl === "loading") {
+          return `<p class="text-center text-gray-700 dark:text-gray-300 mt-4">급식 사진을 불러오는 중입니다.</p>`;
+        }
+
+        if (imageUrl) {
+          return `<img src="${imageUrl}" alt="Meal Image" class="w-full h-auto mt-4 rounded-lg shadow-md" loading="lazy" />`;
+        }
+
+        return `<p class="text-center text-gray-700 dark:text-gray-300 mt-4">급식 사진이 아직 업로드되지 않았습니다.</p>`;
+      }
+
+      function updateMealImage(containerId: string, imageUrl: string | null) {
+        const imageSlot = document.getElementById(`${containerId}-image-slot`);
+        if (imageSlot) {
+          imageSlot.innerHTML = renderMealImage(imageUrl);
         }
       }
 
@@ -241,14 +264,13 @@ export const prerender = true;
         const tomorrowMeal = (meals as any[]).find(
           (meal: { MLSV_YMD: string }) => meal.MLSV_YMD === tomorrowString,
         );
-        const imageUrl = await fetchMealImage();
 
         renderMeal(
           "today-meal-container",
           todayMeal,
           "오늘의 급식",
           "bg-yellow-100 dark:bg-[#7999]",
-          imageUrl,
+          "loading",
         );
         renderMeal(
           "tomorrow-meal-container",
@@ -264,6 +286,10 @@ export const prerender = true;
           if (button) {
             button.addEventListener("click", () => scrollToMonth(i + 1));
           }
+        });
+
+        fetchMealImage().then((imageUrl) => {
+          updateMealImage("today-meal-container", imageUrl);
         });
       });
     </script>
