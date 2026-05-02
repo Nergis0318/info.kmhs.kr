@@ -1,10 +1,10 @@
 @import "tailwindcss";
-@import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
+@import "pretendard-gov/dist/web/variable/pretendardvariable-gov-dynamic-subset.css";
 
 * {
   font-family:
-    "Pretendard Variable",
-    Pretendard,
+    "Pretendard GOV Variable",
+    "Pretendard GOV",
     -apple-system,
     BlinkMacSystemFont,
     system-ui,

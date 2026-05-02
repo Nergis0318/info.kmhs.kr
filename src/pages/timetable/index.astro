@@ -169,7 +169,7 @@ import Layout from "../../layouts/Layout.astro";
                   const teacherMatch = subjectTeacher.match(/^(.+)\((.+)\)$/);
                   if (teacherMatch) {
                     const subject = teacherMatch[1].trim();
-                    const teacher = teacherMatch[2].trim();
+                    const teacher = teacherMatch[2].trim().replace(/\*/g, "");
                     const substituteTeacherMatch =
                       subject.match(/^(.+)\((.+)\)$/);
                     if (teacher === "대체" && subject === "()") {
@@ -184,7 +184,7 @@ import Layout from "../../layouts/Layout.astro";
                         subject: substituteTeacherMatch[1].trim(),
                         teacher: substituteTeacherMatch[2]
                           .trim()
-                          .replace(/\*$/, ""),
+                          .replace(/\*/g, ""),
                         isSubstitute: true,
                       };
                     }
