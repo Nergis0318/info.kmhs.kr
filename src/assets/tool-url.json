@@ -12,12 +12,6 @@
     "type": "tool"
   },
   {
-    "title": "Snowflake",
-    "description": "Snowflake는 전 세계 사람들이 검열된 웹사이트와 애플리케이션에 접근할 수 있도록 해주는 시스템입니다.",
-    "link": "/tool/snowflake",
-    "type": "tool"
-  },
-  {
     "title": "랜덤 자리 배치 생성기",
     "description": "자리 바꿀때 유용한 랜덤 자리 생성기",
     "link": "/tool/SSS",
