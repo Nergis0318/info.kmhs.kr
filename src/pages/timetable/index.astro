@@ -158,13 +158,39 @@ import Layout from "../../layouts/Layout.astro";
               const periods = cleanData.split(", ");
               return periods.map((period) => {
                 const match = period.match(/(\d+교시): (.+)/);
-                if (match && match[2] && match[2] !== "()") {
-                  const subjectTeacher = match[2];
+                if (match && match[2]) {
+                  const subjectTeacher = match[2].trim();
+                  if (subjectTeacher === "()") {
+                    return {
+                      subject: "없음",
+                      teacher: "",
+                    };
+                  }
                   const teacherMatch = subjectTeacher.match(/^(.+)\((.+)\)$/);
                   if (teacherMatch) {
+                    const subject = teacherMatch[1].trim();
+                    const teacher = teacherMatch[2].trim();
+                    const substituteTeacherMatch =
+                      subject.match(/^(.+)\((.+)\)$/);
+                    if (teacher === "대체" && subject === "()") {
+                      return {
+                        subject: "없음",
+                        teacher: "",
+                        isSubstitute: true,
+                      };
+                    }
+                    if (teacher === "대체" && substituteTeacherMatch) {
+                      return {
+                        subject: substituteTeacherMatch[1].trim(),
+                        teacher: substituteTeacherMatch[2]
+                          .trim()
+                          .replace(/\*$/, ""),
+                        isSubstitute: true,
+                      };
+                    }
                     return {
-                      subject: teacherMatch[1],
-                      teacher: teacherMatch[2],
+                      subject: subject === "()" ? "없음" : subject,
+                      teacher: teacher,
                     };
                   }
                   return {
@@ -191,7 +217,7 @@ import Layout from "../../layouts/Layout.astro";
                 const periodData = dayPeriods[i];
 
                 timetableCell.innerHTML = periodData
-                  ? `<div>${periodData.subject}</div><div class="text-sm text-gray-500">${periodData.teacher}</div>`
+                  ? `${periodData.isSubstitute ? '<div class="font-bold">대체</div>' : ""}<div>${periodData.subject}</div><div class="text-sm text-gray-500">${periodData.teacher}</div>`
                   : "";
                 row.appendChild(timetableCell);
               }
