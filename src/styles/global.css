@@ -1,21 +1,199 @@
 @import "tailwindcss";
 @import "pretendard-gov/dist/web/variable/pretendardvariable-gov-dynamic-subset.css";
 
-* {
+/* ─── Design Tokens ─────────────────────────────────────── */
+:root {
+  --primary: #883aea;
+  --accent: #b388ff;
+  --bg: #0f0f13;
+  --text: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.03);
+  --glass-bg-hover: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-hover: rgba(136, 58, 234, 0.6);
+}
+
+/* ─── Base Reset & Dark Background ──────────────────────── */
+*,
+html,
+body {
   font-family:
     "Pretendard GOV Variable",
     "Pretendard GOV",
     -apple-system,
     BlinkMacSystemFont,
     system-ui,
-    Roboto,
-    "Helvetica Neue",
-    "Segoe UI",
-    "Apple SD Gothic Neo",
     "Noto Sans KR",
     "Malgun Gothic",
-    "Apple Color Emoji",
-    "Segoe UI Emoji",
-    "Segoe UI Symbol",
     sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ─── Global Blob Background Atmosphere ─────────────────── */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  opacity: 0.4;
+  animation: blob-bounce 20s infinite ease-in-out alternate;
+  pointer-events: none;
+}
+
+body::before {
+  background: var(--primary);
+  top: -100px;
+  left: -200px;
+}
+
+body::after {
+  background: #5b21b6;
+  bottom: -200px;
+  right: -200px;
+  animation-delay: -10s;
+}
+
+@keyframes blob-bounce {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(50px, 50px) scale(1.1);
+  }
+  100% {
+    transform: translate(-50px, 20px) scale(0.9);
+  }
+}
+
+/* ─── Shared Page Theme Helpers ─────────────────────────── */
+.jetbrains-theme-page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 60px);
+  position: relative;
+  z-index: 1;
+  padding: 2rem 1rem;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.page-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  text-align: center;
+  margin: 2rem 0;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  background: var(--glass-bg-hover);
+  border-color: var(--glass-border-hover);
+  box-shadow: 0 8px 32px rgba(136, 58, 234, 0.15);
+  transform: translateY(-2px);
+}
+
+.primary-button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.primary-button:hover {
+  background: var(--accent);
+  box-shadow: 0 0 20px rgba(136, 58, 234, 0.4);
+  transform: translateY(-1px);
+}
+
+.primary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.month-button {
+  background: var(--glass-bg);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 0.4rem 0.75rem;
+  margin: 0.25rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.month-button:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.dark-select {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.dark-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(136, 58, 234, 0.2);
+}
+
+.dark-select option {
+  background: #1a1a2e;
+  color: var(--text);
+}
+
+.dark-label {
+  display: block;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
 }

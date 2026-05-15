@@ -5,13 +5,9 @@ import links from "../../assets/tool-url.json";
 ---
 
 <Layout title="도구 모음" description="Toolbox">
-  <div class="container mx-auto p-4">
-    <h1
-      class="mb-8 bg-linear-to-r from-blue-500 to-green-500 bg-clip-text text-4xl font-bold text-transparent"
-    >
-      유용한 도구 모음
-    </h1>
-    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+  <main class="jetbrains-theme-page" style="max-width: 1200px;">
+    <h1 class="page-title">유용한 도구 모음</h1>
+    <div class="redirect-grid">
       {
         links.map((link) => (
           //@ts-ignore
@@ -24,5 +20,12 @@ import links from "../../assets/tool-url.json";
         ))
       }
     </div>
-  </div>
+  </main>
+  <style>
+    .redirect-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+  </style>
 </Layout>

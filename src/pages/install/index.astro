@@ -4,24 +4,21 @@ import { Icon } from "astro-icon/components";
 ---
 
 <Layout title="설치 페이지" description="INFO.KMHS.KR를 간단하게 설치해보세요!">
-  <main
-    class="mx-auto w-full max-w-4xl p-4 text-lg leading-relaxed text-black dark:text-white"
-  >
-    <h1 class="my-8 text-center text-3xl font-bold">INFO.KMHS.KR - 설치</h1>
-    <div class="mb-8">
-      <h4 class="mb-2 text-2xl font-semibold">Android</h4>
+  <main class="jetbrains-theme-page">
+    <h1 class="page-title">INFO.KMHS.KR 설치</h1>
+    <div class="glass-card">
+      <h4 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 1rem 0; color: var(--accent, #b388ff);">Android</h4>
+      <p style="color: rgba(255,255,255,0.7); margin-bottom: 1rem;">아래 버튼을 눌러 앱으로 설치하세요.</p>
       <button
         id="installButton"
-        class="rounded bg-blue-500 px-4 py-2 text-white"
-        ><Icon name="mdi:arrow-down-box" /></button
+        class="primary-button"
+        ><Icon name="mdi:arrow-down-box" style="width: 1.2rem; height: 1.2rem;" /> 앱으로 설치하기</button
       >
     </div>
-    <div class="mb-8">
-      <h4 class="mb-2 text-2xl font-semibold">IOS</h4>
-      <p>
-        <Icon name="mdi:ios-share" class="inline-block h-6 w-6" /> 버튼을 눌러 <strong
-          >홈 화면</strong
-        >에 추가하기를 통해 설치를 해주세요.
+    <div class="glass-card">
+      <h4 style="font-size: 1.4rem; font-weight: 700; margin: 0 0 1rem 0; color: var(--accent, #b388ff);">iOS</h4>
+      <p style="color: rgba(255,255,255,0.75); line-height: 1.8;">
+        <Icon name="mdi:ios-share" class="inline-block" style="width: 1.2rem; height: 1.2rem; vertical-align: -0.2rem;" /> 버튼을 눌러 <strong>홈 화면에 추가하기</strong>를 통해 설치하세요.
       </p>
     </div>
   </main>

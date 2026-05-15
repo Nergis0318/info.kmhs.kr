@@ -29,6 +29,12 @@ const year = new Date().getFullYear();
     <link rel="icon" type="image/webp" href="/favicon.webp" />
     <link rel="manifest" href="/manifest.json" />
     <meta name="google-adsense-account" content="ca-pub-6290342471056589" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
 
     <script is:inline>
@@ -66,7 +72,7 @@ const year = new Date().getFullYear();
     </script>
   </head>
 
-  <body class="dark:bg-gray-900">
+  <body>
     <nav class="navbar">
       <ul class="navbar-menu">
         <li class="navbar-home" style="position: absolute; left: 0;">
@@ -112,18 +118,18 @@ const year = new Date().getFullYear();
 
     <slot />
 
-    <footer class="mt-8 bg-gray-800 py-4 text-white">
+    <footer class="mt-8 py-4">
       <div class="container mx-auto text-center">
         <p>&copy; {year} <strong>Nergis</strong>. All rights reserved.</p>
         <p>
           Made with &hearts; and <a
             href="https://astro.build/"
-            class="text-blue-400 hover:underline">Astro</a
+            class="footer-link">Astro</a
           >
         </p>
         <a
           href="https://github.com/Nergis0318/info.kmhs.kr"
-          class="text-blue-400 hover:underline">GitHub Repository</a
+          class="footer-link">GitHub Repository</a
         >
       </div>
     </footer>
@@ -132,8 +138,14 @@ const year = new Date().getFullYear();
 
 <style is:global>
   .navbar {
-    background-color: #333;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
   }
 
   .navbar-menu {
@@ -153,8 +165,20 @@ const year = new Date().getFullYear();
   }
 
   .navbar-menu a {
-    color: white;
+    color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
+    transition: color 0.2s ease;
+    display: block;
+    padding: 0.25rem;
+    border-radius: 6px;
+  }
+
+  .navbar-menu a:hover {
+    color: #fff;
+  }
+
+  .navbar-menu a.active {
+    color: var(--primary, #883aea);
   }
 
   .home-icon {
@@ -162,14 +186,34 @@ const year = new Date().getFullYear();
     height: 24px;
   }
 
-  /* 다크 모드 스타일 */
-  @media (prefers-color-scheme: dark) {
-    .navbar {
-      background-color: #222;
-    }
+  /* Layout footer */
+  footer {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: rgba(255, 255, 255, 0.4);
+    padding: 2rem;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.875rem;
+  }
 
-    .navbar-menu a {
-      color: #ffffff;
-    }
+  footer strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  footer .footer-link {
+    color: var(--primary, #883aea);
+    text-decoration: none;
+    font-weight: 500;
+    transition:
+      color 0.2s,
+      text-shadow 0.2s;
+  }
+
+  footer .footer-link:hover {
+    color: #fff;
+    text-shadow: 0 0 12px var(--primary, #883aea);
   }
 </style>

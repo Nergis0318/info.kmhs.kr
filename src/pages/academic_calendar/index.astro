@@ -4,35 +4,28 @@ import ScrollToTopButton from "../../components/ScrollToTopButton.astro";
 ---
 
 <Layout title="학사 일정" description="학사 일정">
-  <body class="bg-white text-gray-900">
-    <h1 class="my-8 text-center text-3xl font-bold text-black dark:text-white">
-      학사일정
-    </h1>
+  <main class="jetbrains-theme-page" style="max-width: 800px;">
+    <h1 class="page-title">학사일정</h1>
 
-    <!-- Add this loading indicator element in the HTML -->
-    <div id="loading-indicator" class="my-8 text-center">
-      <strong class="text-xl">Loading...</strong>
+    <div id="loading-indicator" class="cal-loading">
+      <strong>불러오는 중...</strong>
     </div>
 
-    <!-- Today's Events Section -->
-    <div class="mx-auto mb-4 max-w-2xl text-center">
-      <h2 class="mb-2 text-2xl font-semibold dark:text-gray-100">
-        오늘의 일정
-      </h2>
+    <div class="cal-today-section">
+      <h2 class="cal-section-title">오늘의 일정</h2>
       <ul id="today-events">
-        <li class="mb-4 rounded-lg bg-gray-100 p-4 shadow-md dark:bg-gray-800">
-          <strong class="block text-xl">Loading...</strong>
+        <li class="glass-card">
+          <strong style="display: block; font-size: 1.1rem;">불러오는 중...</strong>
         </li>
       </ul>
     </div>
 
-    <!-- Month Selection Buttons -->
-    <div class="mx-auto mb-4 max-w-2xl text-center">
+    <div class="month-nav">
       {
         Array.from({ length: 12 }).map((_, i) => (
           <button
             id={`month-button-${i + 1}`}
-            class="m-1 rounded bg-blue-500 p-2 text-white"
+            class="month-button"
           >
             {i + 1}월
           </button>
@@ -40,13 +33,12 @@ import ScrollToTopButton from "../../components/ScrollToTopButton.astro";
       }
     </div>
 
-    <ul id="academic-calendar" class="mx-auto max-w-2xl">
-      <li class="mb-4 rounded-lg bg-gray-100 p-4 shadow-md dark:bg-gray-800">
-        <strong class="block text-xl">Loading...</strong>
+    <ul id="academic-calendar" class="cal-list">
+      <li class="glass-card">
+        <strong style="display: block; font-size: 1.1rem;">불러오는 중...</strong>
       </li>
     </ul>
 
-    <!-- Scroll to Top Button -->
     <ScrollToTopButton />
 
     <script>
@@ -174,5 +166,55 @@ import ScrollToTopButton from "../../components/ScrollToTopButton.astro";
         });
       });
     </script>
-  </body>
+
+    <style>
+      .cal-loading {
+        text-align: center;
+        padding: 2rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.1rem;
+      }
+      .cal-today-section {
+        margin-bottom: 1.5rem;
+      }
+      .cal-section-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+        margin: 0 0 1rem 0;
+        color: var(--accent, #b388ff);
+      }
+      .month-nav {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .cal-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      /* Override Tailwind classes used in dynamically-generated markup */
+      #today-events li,
+      #academic-calendar li {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 12px !important;
+        padding: 1.25rem !important;
+        margin-bottom: 1rem !important;
+        color: rgba(255, 255, 255, 0.85) !important;
+        box-shadow: none !important;
+      }
+      #today-events li h5,
+      #academic-calendar li h5 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.9);
+        margin: 0 0 0.4rem 0;
+      }
+      #today-events li strong,
+      #academic-calendar li strong {
+        color: #fff;
+      }
+    </style>
+  </main>
 </Layout>

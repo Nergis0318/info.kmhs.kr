@@ -5,44 +5,32 @@ import { Image } from "astro:assets";
 ---
 
 <Layout title="급식 조회" description="급식표">
-  <body class="bg-white text-gray-900">
-    <h1 class="my-8 text-center text-3xl font-bold text-black dark:text-white">
-      급식 정보
-    </h1>
+  <main class="jetbrains-theme-page" style="max-width: 800px;">
+    <h1 class="page-title">급식 정보</h1>
 
-    <div id="loading-indicator" class="my-8 text-center">
-      <strong class="text-xl">Loading...</strong>
+    <div id="loading-indicator" class="meal-loading">
+      <strong>불러오는 중...</strong>
     </div>
 
-    <div
-      class="mx-auto mb-4 max-w-2xl rounded-lg bg-gray-100 p-4 shadow-md dark:bg-gray-800"
-    >
-      <h5
-        class="text-center text-lg font-bold text-gray-900 dark:text-gray-100"
-      >
-        알레르기정보
-      </h5>
-      <hr class="my-2 border-gray-300 dark:border-white" />
-      <p
-        class="text-gray-700 dark:text-gray-300"
-        id="allergy-info"
-        style="display: none;"
-      >
+    <div class="glass-card">
+      <h5 class="allergy-title">알레르기정보</h5>
+      <hr class="glass-divider" />
+      <p id="allergy-info" class="allergy-content" style="display: none;">
         1.난류<br />2.우유<br />3.메밀<br />4.땅콩<br />5.대두<br />6.밀<br
         />7.고등어<br />8.게<br />9.새우<br />10.돼지고기<br />11.복숭아<br
         />12.토마토<br />13.아황산염<br />14.호두<br />15.닭고기<br
         />16.소고기<br />17.오징어<br />18.조개류(굴,전복,홍합 포함)<br />19.잣
       </p>
-      <div class="my-2 text-center">
+      <div class="allergy-buttons">
         <button
-          class="rounded border border-gray-300 px-4 py-2 text-blue-500 dark:border-gray-600"
+          class="month-button"
           id="show-button"
           onclick="document.getElementById('allergy-info').style.display = 'block'; this.style.display = 'none'; document.getElementById('hide-button').style.display = 'inline';"
           >더보기</button
         >
         <button
           id="hide-button"
-          class="rounded border border-gray-300 px-4 py-2 text-blue-500 dark:border-gray-600"
+          class="month-button"
           style="display: none;"
           onclick="document.getElementById('allergy-info').style.display = 'none'; this.style.display = 'none'; document.getElementById('show-button').style.display = 'inline';"
           >접기</button
@@ -50,33 +38,72 @@ import { Image } from "astro:assets";
       </div>
     </div>
 
-    <div id="today-meal-container" class="mx-auto mb-4 max-w-2xl"></div>
-    <div id="tomorrow-meal-container" class="mx-auto mb-4 max-w-2xl"></div>
+    <div id="today-meal-container" class="meal-container"></div>
+    <div id="tomorrow-meal-container" class="meal-container"></div>
 
-    <div class="mx-auto mb-4 max-w-2xl text-center">
+    <div class="month-nav">
       {
         Array.from({ length: 12 }).map((_, i) => (
-          <button
-            id={`month-button-${i + 1}`}
-            class="m-1 rounded bg-blue-500 p-2 text-white"
-          >
+          <button id={`month-button-${i + 1}`} class="month-button">
             {i + 1}월
           </button>
         ))
       }
     </div>
 
-    <ul id="meals-list" class="mx-auto max-w-2xl"></ul>
+    <ul id="meals-list" class="meals-list"></ul>
 
     <ScrollToTopButton />
 
     <style>
+      .meal-loading {
+        text-align: center;
+        padding: 2rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.1rem;
+      }
+      .allergy-title {
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin: 0 0 0.75rem 0;
+      }
+      .glass-divider {
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin: 0.5rem 0;
+      }
+      .allergy-content {
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.8;
+        margin: 0.75rem 0 0 0;
+      }
+      .allergy-buttons {
+        margin-top: 0.75rem;
+        text-align: center;
+      }
+      .meal-container {
+        margin-bottom: 1.5rem;
+      }
+      .month-nav {
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
+      .meals-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
       .cal-info {
         font-weight: bold;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.9rem;
       }
       .menu-info {
         margin-top: 0.5rem;
         white-space: pre-line;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.8;
       }
     </style>
 
@@ -164,14 +191,14 @@ import { Image } from "astro:assets";
         const container = document.getElementById(containerId) as HTMLElement;
         if (meal) {
           container.innerHTML = `
-                    <div class="max-w-2xl mx-auto mb-4 p-4 ${bgColor} rounded-lg shadow-md">
-                        <h2 class="text-2xl font-bold text-center mb-2">${title}</h2>
-                        <h5 class="text-lg font-semibold text-gray-900 dark:text-gray-100">${formatDate(meal.MLSV_YMD)}</h5>
-                        <p class="cal-info text-gray-700 dark:text-gray-300">&bull; 칼로리: ${meal.CAL_INFO}</p>
-                        <hr class="my-2 border-gray-300 dark:border-white">
-                        <p class="menu-info text-gray-700 dark:text-gray-300">${meal.DDISH_NM.replace(/<br\/>/g, "<br />").replace(/\(근명\)/g, "")}</p>
+                    <div style="background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);border-left:3px solid ${bgColor};border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;">
+                        <h2 style="font-size:1.5rem;font-weight:700;text-align:center;margin:0 0 0.75rem;color:${bgColor};">${title}</h2>
+                        <h5 style="font-size:1rem;font-weight:600;color:rgba(255,255,255,0.9);margin:0 0 0.5rem;">${formatDate(meal.MLSV_YMD)}</h5>
+                        <p class="cal-info">&bull; 칼로리: ${meal.CAL_INFO}</p>
+                        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.1);margin:0.75rem 0;">
+                        <p class="menu-info">${meal.DDISH_NM.replace(/<br\/>/g, "<br />").replace(/\(근명\)/g, "")}</p>
                         <div id="${containerId}-image-slot">${renderMealImage(imageUrl)}</div>
-                        <button class="copy-menu-button text-blue-500 border border-gray-300 dark:border-gray-600 rounded px-4 py-2 mt-2">메뉴 복사</button>
+                        <button class="copy-menu-button primary-button" style="margin-top:1rem;">메뉴 복사</button>
                     </div>
                 `;
           const copyButton = container.querySelector(
@@ -188,9 +215,9 @@ import { Image } from "astro:assets";
           });
         } else {
           container.innerHTML = `
-                    <div class="max-w-2xl mx-auto mb-4 p-4 bg-red-100 dark:bg-red-800 rounded-lg shadow-md">
-                        <h2 class="text-2xl font-bold text-center mb-2">${title} 정보가 없습니다</h2>
-                        <p class="text-center text-gray-700 dark:text-gray-300">${title} 정보가 제공되지 않았습니다. 다른 날짜를 확인해 주세요.</p>
+                    <div style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;text-align:center;">
+                        <h2 style="font-size:1.5rem;font-weight:700;margin:0 0 0.5rem;">${title} 정보가 없습니다</h2>
+                        <p style="color:rgba(255,255,255,0.6);">${title} 정보가 제공되지 않았습니다. 다른 날짜를 확인해 주세요.</p>
                     </div>
           `;
         }
@@ -202,14 +229,14 @@ import { Image } from "astro:assets";
         }
 
         if (imageUrl === "loading") {
-          return `<p class="text-center text-gray-700 dark:text-gray-300 mt-4">급식 사진을 불러오는 중입니다.</p>`;
+          return `<p style="text-align:center;color:rgba(255,255,255,0.5);margin-top:1rem;">급식 사진을 불러오는 중입니다.</p>`;
         }
 
         if (imageUrl) {
-          return `<img src="${imageUrl}" alt="Meal Image" class="w-full h-auto mt-4 rounded-lg shadow-md" loading="lazy" />`;
+          return `<img src="${imageUrl}" alt="Meal Image" style="width:100%;height:auto;margin-top:1rem;border-radius:12px;" loading="lazy" />`;
         }
 
-        return `<p class="text-center text-gray-700 dark:text-gray-300 mt-4">급식 사진이 아직 업로드되지 않았습니다.</p>`;
+        return `<p style="text-align:center;color:rgba(255,255,255,0.5);margin-top:1rem;">급식 사진이 아직 업로드되지 않았습니다.</p>`;
       }
 
       function updateMealImage(containerId: string, imageUrl: string | null) {
@@ -224,11 +251,11 @@ import { Image } from "astro:assets";
         mealsList.innerHTML = meals
           .map(
             (meal) => `
-                <li class="bg-gray-100 dark:bg-gray-800 shadow-md rounded-lg p-4 mb-4" data-month="${new Date(meal.MLSV_YMD.slice(0, 4) + "-" + meal.MLSV_YMD.slice(4, 6) + "-" + meal.MLSV_YMD.slice(6, 8)).getMonth() + 1}">
-                    <h5 class="text-lg font-semibold text-gray-900 dark:text-gray-100">${formatDate(meal.MLSV_YMD)}</h5>
-                    <p class="cal-info text-gray-700 dark:text-gray-300">&bull; 칼로리: ${meal.CAL_INFO}</p>
-                    <hr class="my-2 border-gray-300 dark:border-white">
-                    <p class="menu-info text-gray-700 dark:text-gray-300">${meal.DDISH_NM.replace(/<br\/>/g, "<br />").replace(/\(근명\)/g, "")}</p>
+                <li style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.25rem;margin-bottom:1rem;" data-month="${new Date(meal.MLSV_YMD.slice(0, 4) + "-" + meal.MLSV_YMD.slice(4, 6) + "-" + meal.MLSV_YMD.slice(6, 8)).getMonth() + 1}">
+                    <h5 style="font-size:1rem;font-weight:600;color:rgba(255,255,255,0.9);margin:0 0 0.4rem;">${formatDate(meal.MLSV_YMD)}</h5>
+                    <p class="cal-info">&bull; 칼로리: ${meal.CAL_INFO}</p>
+                    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.08);margin:0.6rem 0;">
+                    <p class="menu-info" style="font-size:0.9rem;">${meal.DDISH_NM.replace(/<br\/>/g, "<br />").replace(/\(근명\)/g, "")}</p>
                 </li>
             `,
           )
@@ -267,14 +294,14 @@ import { Image } from "astro:assets";
           "today-meal-container",
           todayMeal,
           "오늘의 급식",
-          "bg-yellow-100 dark:bg-[#7999]",
+          "#b388ff",
           "loading",
         );
         renderMeal(
           "tomorrow-meal-container",
           tomorrowMeal,
           "내일 급식",
-          "bg-green-100 dark:bg-green-800",
+          "#6ee7b7",
           "None",
         );
         renderMealsList(meals as any[]);
@@ -291,5 +318,5 @@ import { Image } from "astro:assets";
         });
       });
     </script>
-  </body>
+  </main>
 </Layout>

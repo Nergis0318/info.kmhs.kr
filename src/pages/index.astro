@@ -72,62 +72,6 @@ import Beams from "../components/Beams.tsx";
 </Layout>
 
 <style>
-  :root {
-    --jetbrains-primary: #883aea; /* Point Color */
-    --jetbrains-accent: #b388ff;
-    --text-color: #fff;
-    --background-color: #0f0f13; /* Dark background */
-  }
-
-  body,
-  html {
-    margin: 0;
-    padding: 0;
-    font-family: "JetBrains Mono", sans-serif;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    overflow-x: hidden;
-  }
-
-  /* Background Blobs for Glassmorphism Context */
-  body::before,
-  body::after {
-    content: "";
-    position: fixed;
-    width: 600px;
-    height: 600px;
-    border-radius: 50%;
-    filter: blur(120px);
-    z-index: -1;
-    opacity: 0.4;
-    animation: blob-bounce 20s infinite ease-in-out alternate;
-  }
-
-  body::before {
-    background: var(--jetbrains-primary);
-    top: -100px;
-    left: -200px;
-  }
-
-  body::after {
-    background: #5b21b6; /* Deep purple/violet */
-    bottom: -200px;
-    right: -200px;
-    animation-delay: -10s;
-  }
-
-  @keyframes blob-bounce {
-    0% {
-      transform: translate(0, 0) scale(1);
-    }
-    50% {
-      transform: translate(50px, 50px) scale(1.1);
-    }
-    100% {
-      transform: translate(-50px, 20px) scale(0.9);
-    }
-  }
-
   .jetbrains-theme {
     display: flex;
     flex-direction: column;
@@ -186,7 +130,7 @@ import Beams from "../components/Beams.tsx";
   }
 
   .gradient-text {
-    background: linear-gradient(135deg, #fff 0%, var(--jetbrains-primary) 100%);
+    background: linear-gradient(135deg, #fff 0%, var(--primary) 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -230,7 +174,7 @@ import Beams from "../components/Beams.tsx";
   }
 
   footer .email-link {
-    color: var(--jetbrains-primary);
+    color: var(--primary);
     text-decoration: none;
     font-weight: bold;
     transition:
@@ -242,6 +186,6 @@ import Beams from "../components/Beams.tsx";
 
   footer .email-link:hover {
     color: #fff;
-    text-shadow: 0 0 15px var(--jetbrains-primary);
+    text-shadow: 0 0 15px var(--primary);
   }
 </style>
