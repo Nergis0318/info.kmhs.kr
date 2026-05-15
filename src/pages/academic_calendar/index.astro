@@ -15,7 +15,9 @@ import ScrollToTopButton from "../../components/ScrollToTopButton.astro";
       <h2 class="cal-section-title">오늘의 일정</h2>
       <ul id="today-events">
         <li class="glass-card">
-          <strong style="display: block; font-size: 1.1rem;">불러오는 중...</strong>
+          <strong style="display: block; font-size: 1.1rem;"
+            >불러오는 중...</strong
+          >
         </li>
       </ul>
     </div>
@@ -23,10 +25,7 @@ import ScrollToTopButton from "../../components/ScrollToTopButton.astro";
     <div class="month-nav">
       {
         Array.from({ length: 12 }).map((_, i) => (
-          <button
-            id={`month-button-${i + 1}`}
-            class="month-button"
-          >
+          <button id={`month-button-${i + 1}`} class="month-button">
             {i + 1}월
           </button>
         ))
@@ -35,7 +34,9 @@ import ScrollToTopButton from "../../components/ScrollToTopButton.astro";
 
     <ul id="academic-calendar" class="cal-list">
       <li class="glass-card">
-        <strong style="display: block; font-size: 1.1rem;">불러오는 중...</strong>
+        <strong style="display: block; font-size: 1.1rem;"
+          >불러오는 중...</strong
+        >
       </li>
     </ul>
 

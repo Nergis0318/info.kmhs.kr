@@ -37,11 +37,7 @@ const { title, description, link, type } = Astro.props;
       </div>
     )
   }
-  {
-    type === "tool" && (
-      <Icon name="mdi:tools" class="redirect-icon" />
-    )
-  }
+  {type === "tool" && <Icon name="mdi:tools" class="redirect-icon" />}
   <p class="redirect-desc">{description}</p>
 </a>
 

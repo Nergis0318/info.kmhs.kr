@@ -10,10 +10,7 @@ import Layout from "../../layouts/Layout.astro";
     <h1 class="page-title">시간표 조회</h1>
     <div style="margin-bottom: 1.25rem;">
       <label for="grade" class="dark-label">학년:</label>
-      <select
-        id="grade"
-        class="dark-select"
-      >
+      <select id="grade" class="dark-select">
         {
           Array.from({ length: 3 }).map((_, i) => (
             <option value={i + 1}>{i + 1}학년</option>
@@ -23,10 +20,7 @@ import Layout from "../../layouts/Layout.astro";
     </div>
     <div style="margin-bottom: 1.25rem;">
       <label for="class" class="dark-label">반:</label>
-      <select
-        id="class"
-        class="dark-select"
-      >
+      <select id="class" class="dark-select">
         {
           Array.from({ length: 10 }).map((_, i) => (
             <option value={i + 1}>{i + 1}반</option>
@@ -34,10 +28,7 @@ import Layout from "../../layouts/Layout.astro";
         }
       </select>
     </div>
-    <button
-      id="fetch-timetable"
-      class="primary-button"
-    >
+    <button id="fetch-timetable" class="primary-button">
       <span>시간표 조회</span>
       <svg
         id="loading-icon"
@@ -60,7 +51,11 @@ import Layout from "../../layouts/Layout.astro";
         ></path>
       </svg>
     </button>
-    <div id="timetable-container" class="glass-card" style="margin-top: 1.5rem; overflow-x: auto;">
+    <div
+      id="timetable-container"
+      class="glass-card"
+      style="margin-top: 1.5rem; overflow-x: auto;"
+    >
       <table id="timetable" class="timetable">
         <thead>
           <tr>
@@ -90,8 +85,14 @@ import Layout from "../../layouts/Layout.astro";
         height: 1.25rem;
         animation: spin 1s linear infinite;
       }
-      .hidden { display: none; }
-      @keyframes spin { to { transform: rotate(360deg); } }
+      .hidden {
+        display: none;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
 
       .timetable {
         width: 100%;
