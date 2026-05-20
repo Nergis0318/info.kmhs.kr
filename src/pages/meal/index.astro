@@ -191,7 +191,7 @@ import { Image } from "astro:assets";
         const container = document.getElementById(containerId) as HTMLElement;
         if (meal) {
           container.innerHTML = `
-                    <div style="background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);border-left:3px solid ${bgColor};border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;">
+                    <div style="background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);border:2px solid ${bgColor};border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;">
                         <h2 style="font-size:1.5rem;font-weight:700;text-align:center;margin:0 0 0.75rem;color:${bgColor};">${title}</h2>
                         <h5 style="font-size:1rem;font-weight:600;color:rgba(255,255,255,0.9);margin:0 0 0.5rem;">${formatDate(meal.MLSV_YMD)}</h5>
                         <p class="cal-info">&bull; 칼로리: ${meal.CAL_INFO}</p>
