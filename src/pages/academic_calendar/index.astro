@@ -122,15 +122,16 @@ import ScrollToTopButton from "../../components/ScrollToTopButton.astro";
             ? todayEvents
                 .map(
                   (event) => `
-                <li class="bg-gray-100 dark:bg-gray-800 dark:text-gray-300 shadow-md rounded-lg p-4 mb-4">
-                    <h5 class="text-lg font-semibold">${formatDate(event.AA_YMD)}</h5>
-                    <strong class="block text-xl">${event.EVENT_NM}</strong>${event.EVENT_CNTNT}
+                <li style="background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #b388ff;border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;">
+                    <h5 style="font-size:1rem;font-weight:600;color:rgba(255,255,255,0.9);margin:0 0 0.4rem;">${formatDate(event.AA_YMD)}</h5>
+                    <strong style="display:block;font-size:1.25rem;color:#fff;margin-bottom:0.25rem;">${event.EVENT_NM}</strong>
+                    <p style="color:rgba(255,255,255,0.7);margin:0;">${event.EVENT_CNTNT}</p>
                 </li>
             `,
                 )
                 .join("")
-            : `<li class="bg-gray-100 dark:bg-gray-800 dark:text-gray-300 shadow-md rounded-lg p-4 mb-4">
-                    <strong class="block text-xl">오늘은 일정이 없습니다.</strong>
+            : `<li style="background:rgba(255,255,255,0.03);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.08);border-left:3px solid #b388ff;border-radius:16px;padding:1.5rem;margin-bottom:1.5rem;">
+                    <strong style="display:block;font-size:1.1rem;color:#fff;text-align:center;">오늘은 일정이 없습니다.</strong>
                 </li>`;
 
         const academicCalendarContainer = document.getElementById(
@@ -144,9 +145,10 @@ import ScrollToTopButton from "../../components/ScrollToTopButton.astro";
               EVENT_NM: string;
               EVENT_CNTNT: string;
             }) => `
-            <li class="bg-gray-100 dark:bg-gray-800 dark:text-gray-300 shadow-md rounded-lg p-4 mb-4" data-month="${new Date(event.AA_YMD.slice(0, 4) + "-" + event.AA_YMD.slice(4, 6) + "-" + event.AA_YMD.slice(6, 8)).getMonth() + 1}">
-                <h5 class="text-lg font-semibold">${formatDate(event.AA_YMD)}</h5>
-                <strong class="block text-xl">${event.EVENT_NM}</strong>${event.EVENT_CNTNT}
+            <li style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:1.25rem;margin-bottom:1rem;" data-month="${new Date(event.AA_YMD.slice(0, 4) + "-" + event.AA_YMD.slice(4, 6) + "-" + event.AA_YMD.slice(6, 8)).getMonth() + 1}">
+                <h5 style="font-size:1rem;font-weight:600;color:rgba(255,255,255,0.9);margin:0 0 0.4rem;">${formatDate(event.AA_YMD)}</h5>
+                <strong style="display:block;font-size:1.1rem;color:#fff;margin-bottom:0.15rem;">${event.EVENT_NM}</strong>
+                <span style="color:rgba(255,255,255,0.7);font-size:0.9rem;">${event.EVENT_CNTNT}</span>
             </li>
         `,
           )
@@ -194,28 +196,7 @@ import ScrollToTopButton from "../../components/ScrollToTopButton.astro";
         padding: 0;
         margin: 0;
       }
-      /* Override Tailwind classes used in dynamically-generated markup */
-      #today-events li,
-      #academic-calendar li {
-        background: rgba(255, 255, 255, 0.03) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 12px !important;
-        padding: 1.25rem !important;
-        margin-bottom: 1rem !important;
-        color: rgba(255, 255, 255, 0.85) !important;
-        box-shadow: none !important;
-      }
-      #today-events li h5,
-      #academic-calendar li h5 {
-        font-size: 1rem;
-        font-weight: 600;
-        color: rgba(255, 255, 255, 0.9);
-        margin: 0 0 0.4rem 0;
-      }
-      #today-events li strong,
-      #academic-calendar li strong {
-        color: #fff;
-      }
+
     </style>
   </main>
 </Layout>
