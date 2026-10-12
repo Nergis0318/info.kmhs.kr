@@ -39,6 +39,8 @@ export default defineConfig({
 
   site: "https://info.kmhs.kr",
 
+  compressHTML: true,
+
   vite: {
     plugins: [tailwindcss()],
   },
