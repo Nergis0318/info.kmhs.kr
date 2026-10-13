@@ -15,10 +15,4 @@
       "enabled": true,
     },
   },
-  "routes": [
-    {
-      "pattern": "info.kmhs.kr",
-      "custom_domain": true,
-    },
-  ],
 }
